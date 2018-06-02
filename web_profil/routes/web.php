@@ -34,3 +34,4 @@ Route::get('/admin', 'HomeController@admin')->name('home');
 Route::post('/input_barang', 'HomeController@input_barang');
 Route::get('/deled/{id}', 'HomeController@deled');
 Route::post('/edit_barang/{id}', 'HomeController@update_barang');
+Route::post('/edit_admin/{id}', 'HomeController@update_admin');

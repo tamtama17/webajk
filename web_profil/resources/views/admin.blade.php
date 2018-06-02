@@ -68,18 +68,26 @@
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
+                                              @if( $var->foto_admin == NULL )
                                               <img src="default.png" style="width: 50%;">
-                                              <br><br>
-                                              <form>
-                                                <input class="form-control" disabled value="{{$var->nama_admin}}">
-                                              <br>
-                                              <input class="form-control" disabled value="{{$var->NRP}}">
-                                              <br>
-                                              <input class="form-control" disabled value="{{$var->jabatan_admin}}">
-                                              </form>
+                                              @else
+                                              <img src="/foto_profil/{{$var->foto_admin}}" style="width: 50%;">
+                                              @endif
+                                              <form action="{{ url('/edit_admin',['id' => $var->id]) }}" method="POST" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <fieldset>
+                                                <input type="file" name="foto_admin" accept=".png, .jpg, .jpeg">
+                                                <br><br>
+                                                <input class="form-control" placeholder="Nama Lengkap" name="nama_admin" value="{{$var->nama_admin}}">
+                                                <br>
+                                                <input class="form-control" placeholder="NRP" name="NRP" value="{{$var->NRP}}">
+                                                <br>
+                                                <input class="form-control" placeholder="Jabatan" name="jabatan_admin" value="{{$var->jabatan_admin}}">
+                                                </fieldset>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-info">Ok</button>
+                                              <button class="btn btn-info">Simpan</button>
+                                              </form>
                                             </div>
                                         </div>
                                     </div>

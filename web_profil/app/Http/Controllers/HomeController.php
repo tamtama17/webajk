@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use App\inventaris;
 use App\daftaradmin;
 class HomeController extends Controller
@@ -60,7 +62,6 @@ class HomeController extends Controller
     }
 
     public function update_barang(Request $request, $id){
-        //dd($id);
 
         $update = array(
             'jenis_barang' => $request->input('jenis_barang'),
@@ -72,6 +73,35 @@ class HomeController extends Controller
         $hehe = inventaris::find($id);
         //dd($hehe);
         inventaris::find($id)->update($update);
+        return redirect()->back()->with(['info' => 'Data Berhasil DiUpdate']);   
+    }
+
+    public function update_admin(Request $request, $id){
+
+        if ($request->file('foto_admin')) {
+            $berkas = $request->file('foto_admin');
+            $namafile = time().'_'.$id.'.'.$berkas->getClientOriginalExtension();
+            $path = public_path('foto_profil');
+            $berkas->move($path, $namafile);
+
+            $query = DB::table('daftaradmin')->where('id', $id)->first();
+            if ($query->foto_admin != NULL) {
+                File::delete(public_path('/foto_profil/'.$query->foto_admin));
+            }
+
+            $gantifoto = array(
+                'foto_admin' => $namafile
+            );
+            daftaradmin::find($id)->update($gantifoto);
+        }
+
+        $update = array(
+            'nama_admin' => $request->input('nama_admin'),
+            'NRP' => $request->input('NRP'),
+            'jabatan_admin' => $request->input('jabatan_admin'),
+        );
+
+        daftaradmin::find($id)->update($update);
         return redirect()->back()->with(['info' => 'Data Berhasil DiUpdate']);   
     }
 

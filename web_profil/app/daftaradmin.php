@@ -10,6 +10,6 @@ class daftaradmin extends Model
     protected $table = 'daftaradmin';
 
    	protected $fillable = [
-   		'name_admin', 'foto_admin', 'jabatan_admin',
+   		'name_admin', 'foto_admin', 'NRP', 'jabatan_admin',
    	];
 }
