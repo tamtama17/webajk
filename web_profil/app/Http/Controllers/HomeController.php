@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\inventaris;
+use App\daftaradmin;
 class HomeController extends Controller
 {
     /**
@@ -26,6 +27,13 @@ class HomeController extends Controller
         $var = inventaris::all();
         //dd($var);        
         return view('inventaris',compact('var'));
+    }
+
+    public function admin()
+    {
+        $var = daftaradmin::all();
+        //dd($var);        
+        return view('admin',compact('var'));
     }
 
     public function input_barang(Request $request)

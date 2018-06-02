@@ -7,7 +7,7 @@
   <div class="container" style="text-align: center;">
   	<table class="table table-hover">
   		<thead>
-  			<tr>
+  			<tr class="table-dark">
   				<th><b>Nama</b></th>
 	  			<th><b>Semester</b></th>
 	  			<th><b>Bobot SKS</b></th>

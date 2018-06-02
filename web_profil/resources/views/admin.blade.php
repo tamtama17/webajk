@@ -39,20 +39,16 @@
                         <strong>{{ $message }}</strong>
                       </div>
                     @endif                    
-                    <h3>Inventaris AJK</h3>
-                    <button type="button" class="btn btn-success btn-sm mr-3" style="float: right;" data-toggle="modal" data-target="#myModal">
-                      Add Item
-                    </button>
-                    <br><br>
+                    <h3>Admin AJK</h3>
+                    <br>
                     <div class="container" style="text-align: center;">
                         <table class="table table-hover">
                             <thead>
                                 <tr class="table-dark">
                                     <th>No</th>
-                                    <th>Jenis Barang</th>
-                                    <th>Merk Barang</th>
-                                    <th>Jumlah</th>
-                                    <th style="column-span: 2;">Update</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>NRP</th>
+                                    <th>Jabatan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,42 +56,30 @@
                                 @foreach($var as $var)
                                 <tr>
                                     <td> {{$i++}} </td>
-                                    <td>{{$var->jenis_barang}}</td>
-                                    <td>{{$var->merek_barang}}</td>
-                                    <td>{{$var->jumlah_barang}}</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-info" data-toggle="modal" style="color: white" data-target="#editModal{{$var->id}}">Edit</a>
-                                        <a class="btn btn-sm btn-danger" href="{{ url('/deled',['id' => $var->id]) }}">Delte</a>
-                                    </td>
+                                    <td><a data-toggle="modal" data-target="#editModal{{$var->id}}" style="cursor: pointer;">{{$var->nama_admin}}</a></td>
+                                    <td>{{$var->NRP}}</td>
+                                    <td>{{$var->jabatan_admin}}</td>
                                 </tr>
                                 <div class="modal" id="editModal{{$var->id}}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Edit Data Barang</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>                
+                                              <h4 class="modal-title">Data Admin</h4>
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ url('/edit_barang',['id' => $var->id]) }}" method="POST">
-                                                {{ csrf_field() }}
-                                                <fieldset>
-                                                <div class="form-group">
-                                                  <label for="exampleInputPassword1">Jenis Barang</label>
-                                                  <input class="form-control" id="exampleInputPassword1" placeholder="Jenis" type="text" name="jenis_barang" value="{{$var->jenis_barang}}">
-                                                </div>
-                                                <div class="form-group">
-                                                  <label for="exampleInputPassword1">Merk Barang</label>
-                                                  <input class="form-control" id="exampleInputPassword1" placeholder="Merk" type="text" name="merek_barang" value="{{$var->merek_barang}}">
-                                                </div>
-                                                <div class="form-group">
-                                                  <label for="exampleInputPassword1">Jumlah Barang</label>
-                                                  <input class="form-control" id="exampleInputPassword1" placeholder="Jumlah" type="number" min="1" name="jumlah_barang" value="{{$var->jumlah_barang}}">
-                                                </div>
-                                                </fieldset>                
+                                              <img src="default.png" style="width: 50%;">
+                                              <br><br>
+                                              <form>
+                                                <input class="form-control" disabled value="{{$var->nama_admin}}">
+                                              <br>
+                                              <input class="form-control" disabled value="{{$var->NRP}}">
+                                              <br>
+                                              <input class="form-control" disabled value="{{$var->jabatan_admin}}">
+                                              </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-info">Save</button>
-                                            </form>
+                                                <button class="btn btn-info">Ok</button>
                                             </div>
                                         </div>
                                     </div>

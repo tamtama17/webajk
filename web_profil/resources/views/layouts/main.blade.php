@@ -29,7 +29,6 @@
           <li class="nav-item "><a class="nav-link" href="{{ url('matkul') }}">Mata Kuliah</a></li>
           <li class="nav-item " style="cursor: pointer;"><a class="nav-link" data-toggle="modal" data-target="#modalLogin">Login</a></li>
           @else
-          <li class="nav-item "><a class="nav-link" href="{{ url('profil') }}">Profil</a></li>
           <li class="nav-item "><a class="nav-link" href="{{ url('admin') }}">Admin</a></li>
           <li class="nav-item "><a class="nav-link" href="{{ url('inventaris') }}">Inventaris</a></li>
           <li class="nav-item">

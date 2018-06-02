@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 Route::get('/matkul', function () {
     return view('matkul');
 });
@@ -26,6 +30,7 @@ Route::get('/matkul', function () {
 Auth::routes();
 
 Route::get('/inventaris', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@admin')->name('home');
 Route::post('/input_barang', 'HomeController@input_barang');
 Route::get('/deled/{id}', 'HomeController@deled');
 Route::post('/edit_barang/{id}', 'HomeController@update_barang');
